@@ -3,8 +3,9 @@ from pygame.locals import *
 
 pygame.init()
 
-# Game loop
+DISPLAYSURF = pygame.display.set_mode((300, 300))
 
+# Game loop
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
