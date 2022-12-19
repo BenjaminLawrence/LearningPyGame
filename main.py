@@ -3,12 +3,11 @@ from pygame.locals import *
 from colors import *
 from enemy import Enemy
 from player import Player
-from screen import SCREEN_WIDTH, SCREEN_HEIGHT
+from screen import FPS, SCREEN_WIDTH, SCREEN_HEIGHT
 
 pygame.init()
 
-FPS = pygame.time.Clock()
-FPS.tick(60)
+GameClock = pygame.time.Clock()
 
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 DISPLAYSURF.fill(WHITE)
@@ -31,3 +30,4 @@ while True:
     enemy1.draw(DISPLAYSURF)
 
     pygame.display.update()
+    GameClock.tick(FPS)
