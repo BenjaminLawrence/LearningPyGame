@@ -6,7 +6,10 @@ pygame.init()
 FPS = pygame.time.Clock()
 FPS.tick(60)
 
-DISPLAYSURF = pygame.display.set_mode((300, 300))
+SCREEN_WIDTH = 400
+SCREEN_HEIGHT = 600
+
+DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Game loop
 while True:
