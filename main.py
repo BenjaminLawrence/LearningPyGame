@@ -1,6 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 import colors
+from screen import SCREEN_WIDTH, SCREEN_HEIGHT
 
 pygame.init()
 
