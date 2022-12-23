@@ -5,29 +5,46 @@ from enemy import Enemy
 from player import Player
 from screen import FPS, SCREEN_WIDTH, SCREEN_HEIGHT
 
-pygame.init()
+class App:
+    def __init__(self):
+        self._running = True
+        self._display_surf = None
+        self.size = 0, 0
+        self._image_surf = None
 
-GameClock = pygame.time.Clock()
+    def on_init(self):
+        pygame.init()
+        self._running = True
+        self._display_surf = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        self._display_surf.fill(WHITE)
+        pygame.display.set_caption("Game")
 
-DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-DISPLAYSURF.fill(WHITE)
-pygame.display.set_caption("Game")
+    def on_execute(self):
+        if self.on_init() == False:
+            self._running = False
 
-player = Player()
-enemy1 = Enemy()
+        while (self._running):
+            GameClock = pygame.time.Clock()
 
-# Game loop
-while True:
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-    player.update()
-    enemy1.move()
+            player = Player()
+            enemy1 = Enemy()
 
-    DISPLAYSURF.fill(WHITE)
-    player.draw(DISPLAYSURF)
-    enemy1.draw(DISPLAYSURF)
+            # Game loop
+            while True:
+                for event in pygame.event.get():
+                    if event.type == QUIT:
+                        pygame.quit()
+                        sys.exit()
+                player.update()
+                enemy1.move()
 
-    pygame.display.update()
-    GameClock.tick(FPS)
+                self._display_surf.fill(WHITE)
+                player.draw(self._display_surf)
+                enemy1.draw(self._display_surf)
+
+                pygame.display.update()
+                GameClock.tick(FPS)
+
+if __name__ == "__main__":
+    app = App()
+    app.on_execute()
