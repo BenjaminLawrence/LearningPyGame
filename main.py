@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, time
 from pygame.locals import *
 from colors import *
 from enemy import Enemy
@@ -55,6 +55,15 @@ class App:
                 self._display_surf.fill(WHITE)
                 player.draw(self._display_surf)
                 enemy1.draw(self._display_surf)
+
+                if pygame.sprite.spritecollideany(player, enemies):
+                    self._display_surf.fill(RED)
+                    pygame.display.update()
+                    for entity in all_sprites:
+                        entity.kill()
+                    time.sleep(2)
+                    pygame.quit()
+                    sys.exit()
 
                 pygame.display.update()
                 GameClock.tick(FPS)
