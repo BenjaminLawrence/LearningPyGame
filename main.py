@@ -20,6 +20,9 @@ class App:
         pygame.display.set_caption("Game")
 
     def on_execute(self):
+        inc_speed = pygame.USEREVENT + 1
+        pygame.time.set_timer(inc_speed, 1000)
+
         if self.on_init() == False:
             self._running = False
 
@@ -29,9 +32,13 @@ class App:
             player = Player()
             enemy1 = Enemy()
 
+            speed = 0
+
             # Game loop
             while True:
                 for event in pygame.event.get():
+                    if event.type == inc_speed:
+                        speed += 2
                     if event.type == QUIT:
                         pygame.quit()
                         sys.exit()
