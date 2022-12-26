@@ -9,7 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (160, 520)
 
-    def update(self):
+    def move(self):
         pressed_keys = pygame.key.get_pressed()
         """if pressed_keys[K_UP]:
             self.rect.move_ip(0, -5)
