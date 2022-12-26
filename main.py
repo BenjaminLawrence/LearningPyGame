@@ -32,6 +32,13 @@ class App:
             player = Player()
             enemy1 = Enemy()
 
+            all_sprites = pygame.sprite.Group()
+            all_sprites.add(player)
+            all_sprites.add(enemy1)
+            
+            enemies = pygame.sprite.Group()
+            enemies.add(enemy1)
+
             speed = 0
 
             # Game loop
