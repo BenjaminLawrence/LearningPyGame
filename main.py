@@ -20,22 +20,19 @@ class App:
         pygame.display.set_caption("Game")
 
     def on_execute(self):
-        inc_speed = pygame.USEREVENT + 1
-        pygame.time.set_timer(inc_speed, 1000)
-
         if self.on_init() == False:
             self._running = False
 
         while (self._running):
             GameClock = pygame.time.Clock()
 
+            inc_speed = pygame.USEREVENT + 1
+            pygame.time.set_timer(inc_speed, 1000)
+
             player = Player()
             enemy1 = Enemy()
 
-            all_sprites = pygame.sprite.Group()
-            all_sprites.add(player)
-            all_sprites.add(enemy1)
-            
+            non_player_sprites = pygame.sprite.Group()
             enemies = pygame.sprite.Group()
             enemies.add(enemy1)
 
@@ -49,8 +46,9 @@ class App:
                     if event.type == QUIT:
                         pygame.quit()
                         sys.exit()
-                player.update()
-                enemy1.move()
+                player.move()
+                for entity in non_player_sprites:
+                    entity.move()
 
                 self._display_surf.fill(WHITE)
                 player.draw(self._display_surf)
@@ -59,7 +57,8 @@ class App:
                 if pygame.sprite.spritecollideany(player, enemies):
                     self._display_surf.fill(RED)
                     pygame.display.update()
-                    for entity in all_sprites:
+                    player.kill()
+                    for entity in non_player_sprites:
                         entity.kill()
                     time.sleep(2)
                     pygame.quit()
