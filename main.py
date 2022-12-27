@@ -33,8 +33,7 @@ class App:
             enemy1 = Enemy()
 
             non_player_sprites = pygame.sprite.Group()
-            enemies = pygame.sprite.Group()
-            enemies.add(enemy1)
+            non_player_sprites.add(enemy1)
 
             speed = 0
 
