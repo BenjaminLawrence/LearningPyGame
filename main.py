@@ -45,15 +45,15 @@ class App:
                     if event.type == QUIT:
                         pygame.quit()
                         sys.exit()
-                player.draw()
-                player.move()
-                for entity in enemies:
-                    entity.draw()
-                    entity.move()
 
                 self._display_surf.fill(WHITE)
+
                 player.draw(self._display_surf)
-                enemy1.draw(self._display_surf)
+                player.move()
+                
+                for entity in enemies:
+                    entity.draw(self._display_surf)
+                    entity.move()
 
                 if pygame.sprite.spritecollideany(player, enemies):
                     self._display_surf.fill(RED)
