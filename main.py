@@ -32,8 +32,8 @@ class App:
             player = Player()
             enemy1 = Enemy()
 
-            non_player_sprites = pygame.sprite.Group()
-            non_player_sprites.add(enemy1)
+            enemies = pygame.sprite.Group()
+            enemies.add(enemy1)
 
             speed = 0
 
@@ -46,7 +46,7 @@ class App:
                         pygame.quit()
                         sys.exit()
                 player.move()
-                for entity in non_player_sprites:
+                for entity in enemies:
                     entity.move()
 
                 self._display_surf.fill(WHITE)
@@ -57,7 +57,7 @@ class App:
                     self._display_surf.fill(RED)
                     pygame.display.update()
                     player.kill()
-                    for entity in non_player_sprites:
+                    for entity in enemies:
                         entity.kill()
                     time.sleep(2)
                     pygame.quit()
