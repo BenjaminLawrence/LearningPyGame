@@ -45,8 +45,10 @@ class App:
                     if event.type == QUIT:
                         pygame.quit()
                         sys.exit()
+                player.draw()
                 player.move()
                 for entity in enemies:
+                    entity.draw()
                     entity.move()
 
                 self._display_surf.fill(WHITE)
