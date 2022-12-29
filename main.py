@@ -53,7 +53,7 @@ class App:
                 
                 for entity in enemies:
                     entity.draw(self._display_surf)
-                    entity.move()
+                    entity.move(speed)
 
                 if pygame.sprite.spritecollideany(player, enemies):
                     self._display_surf.fill(RED)
