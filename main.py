@@ -45,7 +45,7 @@ class App:
 
             # Game loop
             while True:
-                
+
                 for event in pygame.event.get():
                     if event.type == inc_speed:
                         speed += 0.5
@@ -63,7 +63,12 @@ class App:
                     entity.move(speed)
 
                 if pygame.sprite.spritecollideany(player, enemies):
+                    pygame.mixer.Sound('crash.wav').play()
+                    time.sleep(0.5)
+                    
                     self._display_surf.fill(RED)
+                    self._display_surf.blit(game_over, (30, 250))
+
                     pygame.display.update()
                     player.kill()
                     for entity in enemies:
