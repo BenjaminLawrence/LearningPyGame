@@ -35,13 +35,20 @@ class App:
             enemies = pygame.sprite.Group()
             enemies.add(enemy1)
 
+            font = pygame.font.SysFont("Verdana", 60)
+            font_small = pygame.font.SysFont("Verdana", 20)
+            game_over = font.render("Game Over", True, BLACK)
+
+            background = pygame.image.load("AnimatedStreet.png")
+
             speed = 0
 
             # Game loop
             while True:
+                
                 for event in pygame.event.get():
                     if event.type == inc_speed:
-                        speed += 2
+                        speed += 0.5
                     if event.type == QUIT:
                         pygame.quit()
                         sys.exit()
